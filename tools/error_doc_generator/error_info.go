@@ -19,7 +19,7 @@ type errorInfo struct {
 
 func (err errorInfo) toString(moduleName string) string {
 	errorInfoTemplate := "|%s|%s|%s|%s|\n"
-	if err.errorName == "ModuleName" {
+	if err.codeSpace == "ModuleName" {
 		if moduleName != "" {
 			return fmt.Sprintf(errorInfoTemplate, err.errorName, moduleName, err.code, err.description)
 		} else {
@@ -46,7 +46,7 @@ func addError(line string, errorDict map[string]string) errorInfo {
 		if len(parts) == 3 {
 			codeSpace := strings.TrimSpace(parts[0])
 			code := strings.TrimSpace(parts[1])
-			description := strings.TrimSpace(parts[2])
+			description := strings.Trim(strings.TrimSpace(parts[2]), `"`)
 
 			if constValue, found := errorDict[codeSpace]; found {
 				codeSpace = constValue
@@ -75,7 +75,7 @@ func getConst(line string) (string, string) {
 	parts := strings.Split(line, "=")
 	if len(parts) == 2 {
 		i := strings.TrimSpace(parts[0])
-		val := strings.TrimSpace(strings.Trim(parts[1], `"`))
+		val := strings.Trim(strings.TrimSpace(parts[1]), `"`)
 		return i, val
 	} else {
 		fmt.Printf("failed to get the value in: %s \n", line)
