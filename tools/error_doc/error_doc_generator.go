@@ -1,4 +1,4 @@
-//go:build error_doc_generator
+//go:build error_doc
 
 package main
 
@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -45,7 +46,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// get module name and bind with paths (one module may have multiple errors.go)
+	// get each module name and bind it to paths (one module may have multiple errors.go)
 	moduleWithPaths := make(map[string][]string)
 	for _, filePath := range filePaths {
 		moduleName := findModuleName(filePath)
@@ -56,6 +57,14 @@ func main() {
 		moduleWithPaths[moduleName] = append(moduleWithPaths[moduleName], filePath)
 	}
 
+	// sort keys and filepaths
+	var modules []string
+	for moduleName := range moduleWithPaths {
+		modules = append(modules, moduleName)
+		sort.Strings(moduleWithPaths[moduleName])
+	}
+	sort.Strings(modules)
+
 	filePath := targetPath + "/errors.md"
 	file, err := os.Create(filePath)
 	if err != nil {
@@ -64,17 +73,17 @@ func main() {
 	}
 	defer file.Close()
 
-	// category
+	// generate category
 	file.WriteString("<!-- TOC -->\n")
 	file.WriteString("Category\n")
 	columnTemplate := "  * [%s](#%s)\n"
-	for moduleName := range moduleWithPaths {
+	for _, moduleName := range modules {
 		file.WriteString(fmt.Sprintf(columnTemplate, strings.Title(moduleName), moduleName))
 	}
 	file.WriteString("<!-- TOC -->\n")
 
 	// errors in each module
-	for moduleName, filePaths := range moduleWithPaths {
+	for _, moduleName := range modules {
 
 		// table header
 		file.WriteString("\n")
@@ -82,6 +91,7 @@ func main() {
 		file.WriteString("\n")
 		file.WriteString("|Error Name|Codespace|Code|Description|\n")
 		file.WriteString("|:-|:-|:-|:-|\n")
+		filePaths := moduleWithPaths[moduleName]
 
 		for _, filePath := range filePaths {
 			errDict := getErrors(filePath)

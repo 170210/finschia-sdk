@@ -1,59 +1,50 @@
 <!-- TOC -->
 Category
-  * [Token](#token)
-  * [Feegrant](#feegrant)
-  * [Collection](#collection)
-  * [Evidence](#evidence)
+  * [Authz](#authz)
   * [Bank](#bank)
   * [Capability](#capability)
-  * [Distribution](#distribution)
-  * [Foundation](#foundation)
+  * [Collection](#collection)
   * [Crisis](#crisis)
-  * [Staking](#staking)
-  * [Params](#params)
-  * [Authz](#authz)
-  * [Slashing](#slashing)
+  * [Distribution](#distribution)
+  * [Evidence](#evidence)
+  * [Feegrant](#feegrant)
+  * [Foundation](#foundation)
   * [Gov](#gov)
+  * [Params](#params)
+  * [Slashing](#slashing)
+  * [Staking](#staking)
+  * [Token](#token)
 <!-- TOC -->
-## Token
+
+## Authz
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrTokenNotExist|token|2|token does not exist|
-|ErrTokenNotMintable|token|3|token is not mintable|
-|ErrInvalidTokenName|token|4|token name should not be empty|
-|ErrInvalidTokenDecimals|token|5|token decimals should be within the range in 0 ~ 18|
-|ErrInvalidAmount|token|6|invalid token amount|
-|ErrInvalidImageURILength|token|7|invalid token uri length|
-|ErrInvalidNameLength|token|8|invalid name length|
-|ErrInvalidTokenSymbol|token|9|invalid token symbol|
-|ErrTokenNoPermission|token|10|account does not have the permission|
-|ErrAccountExist|token|11|account already exists|
-|ErrAccountNotExist|token|12|account does not exists|
-|ErrInsufficientBalance|token|13|insufficient balance|
-|ErrSupplyExist|token|14|supply for token already exists|
-|ErrInsufficientSupply|token|15|insufficient supply|
-|ErrInvalidChangesFieldCount|token|16|invalid count of field changes|
-|ErrEmptyChanges|token|17|changes is empty|
-|ErrInvalidChangesField|token|18|invalid field of changes|
-|ErrDuplicateChangesField|token|19|invalid field of changes|
-|ErrInvalidMetaLength|token|20|invalid meta length|
-|ErrSupplyOverflow|token|21|supply for token reached maximum|
-|ErrApproverProxySame|token|22|approver is same with proxy|
-|ErrTokenNotApproved|token|23|proxy is not approved on the token|
-|ErrTokenAlreadyApproved|token|24|proxy is already approved on the token|
-|ErrInvalidContractID|contract|2|invalid contractID|
-|ErrContractNotExist|contract|3|contract does not exist|
-## Feegrant
+|ErrInvalidExpirationTime|authz|3|expiration time of authorization should be more than current time|
+
+## Bank
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrFeeLimitExceeded|feegrant|2|fee limit exceeded|
-|ErrFeeLimitExpired|feegrant|3|fee allowance expired|
-|ErrInvalidDuration|feegrant|4|invalid duration|
-|ErrNoAllowance|feegrant|5|no allowance|
-|ErrNoMessages|feegrant|6|allowed messages are empty|
-|ErrMessageNotAllowed|feegrant|7|message not allowed|
+|ErrNoInputs|bank|2|no inputs to send transaction|
+|ErrNoOutputs|bank|3|no outputs to send transaction|
+|ErrInputOutputMismatch|bank|4|sum inputs != sum outputs|
+|ErrSendDisabled|bank|5|send transactions are disabled|
+|ErrDenomMetadataNotFound|bank|6|client denom metadata not found|
+|ErrInvalidKey|bank|7|invalid key|
+
+## Capability
+
+|Error Name|Codespace|Code|Description|
+|:-|:-|:-|:-|
+|ErrInvalidCapabilityName|capability|2|capability name not valid|
+|ErrNilCapability|capability|3|provided capability is nil|
+|ErrCapabilityTaken|capability|4|capability name already taken|
+|ErrOwnerClaimed|capability|5|given owner already claimed capability|
+|ErrCapabilityNotOwned|capability|6|capability not owned by module|
+|ErrCapabilityNotFound|capability|7|capability not found|
+|ErrCapabilityOwnersNotFound|capability|8|owners not found for capability|
+
 ## Collection
 
 |Error Name|Codespace|Code|Description|
@@ -104,35 +95,14 @@ Category
 |ErrCompositionTooDeep|collection|45|cannot attach token (composition too deep)|
 |ErrCompositionTooWide|collection|46|cannot attach token (composition too wide)|
 |ErrBurnNonRootNFT|collection|47|cannot burn non-root NFTs|
-## Evidence
+
+## Crisis
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrNoEvidenceHandlerExists|evidence|2|unregistered handler for evidence type|
-|ErrInvalidEvidence|evidence|3|invalid evidence|
-|ErrNoEvidenceExists|evidence|4|evidence does not exist|
-|ErrEvidenceExists|evidence|5|evidence already exists|
-## Bank
+|ErrNoSender|crisis|2|sender address is empty|
+|ErrUnknownInvariant|crisis|3|unknown invariant|
 
-|Error Name|Codespace|Code|Description|
-|:-|:-|:-|:-|
-|ErrNoInputs|bank|2|no inputs to send transaction|
-|ErrNoOutputs|bank|3|no outputs to send transaction|
-|ErrInputOutputMismatch|bank|4|sum inputs != sum outputs|
-|ErrSendDisabled|bank|5|send transactions are disabled|
-|ErrDenomMetadataNotFound|bank|6|client denom metadata not found|
-|ErrInvalidKey|bank|7|invalid key|
-## Capability
-
-|Error Name|Codespace|Code|Description|
-|:-|:-|:-|:-|
-|ErrInvalidCapabilityName|capability|2|capability name not valid|
-|ErrNilCapability|capability|3|provided capability is nil|
-|ErrCapabilityTaken|capability|4|capability name already taken|
-|ErrOwnerClaimed|capability|5|given owner already claimed capability|
-|ErrCapabilityNotOwned|capability|6|capability not owned by module|
-|ErrCapabilityNotFound|capability|7|capability not found|
-|ErrCapabilityOwnersNotFound|capability|8|owners not found for capability|
 ## Distribution
 
 |Error Name|Codespace|Code|Description|
@@ -149,16 +119,68 @@ Category
 |ErrEmptyProposalRecipient|distribution|11|invalid community pool spend proposal recipient|
 |ErrNoValidatorExists|distribution|12|validator does not exist|
 |ErrNoDelegationExists|distribution|13|delegation does not exist|
+
+## Evidence
+
+|Error Name|Codespace|Code|Description|
+|:-|:-|:-|:-|
+|ErrNoEvidenceHandlerExists|evidence|2|unregistered handler for evidence type|
+|ErrInvalidEvidence|evidence|3|invalid evidence|
+|ErrNoEvidenceExists|evidence|4|evidence does not exist|
+|ErrEvidenceExists|evidence|5|evidence already exists|
+
+## Feegrant
+
+|Error Name|Codespace|Code|Description|
+|:-|:-|:-|:-|
+|ErrFeeLimitExceeded|feegrant|2|fee limit exceeded|
+|ErrFeeLimitExpired|feegrant|3|fee allowance expired|
+|ErrInvalidDuration|feegrant|4|invalid duration|
+|ErrNoAllowance|feegrant|5|no allowance|
+|ErrNoMessages|feegrant|6|allowed messages are empty|
+|ErrMessageNotAllowed|feegrant|7|message not allowed|
+
 ## Foundation
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-## Crisis
+
+## Gov
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrNoSender|crisis|2|sender address is empty|
-|ErrUnknownInvariant|crisis|3|unknown invariant|
+|ErrUnknownProposal|gov|2|unknown proposal|
+|ErrInactiveProposal|gov|3|inactive proposal|
+|ErrAlreadyActiveProposal|gov|4|proposal already active|
+|ErrInvalidProposalContent|gov|5|invalid proposal content|
+|ErrInvalidProposalType|gov|6|invalid proposal type|
+|ErrInvalidVote|gov|7|invalid vote option|
+|ErrInvalidGenesis|gov|8|invalid genesis state|
+|ErrNoProposalHandlerExists|gov|9|no handler exists for proposal type|
+
+## Params
+
+|Error Name|Codespace|Code|Description|
+|:-|:-|:-|:-|
+|ErrUnknownSubspace|params|2|unknown subspace|
+|ErrSettingParameter|params|3|failed to set parameter|
+|ErrEmptyChanges|params|4|submitted parameter changes are empty|
+|ErrEmptySubspace|params|5|parameter subspace is empty|
+|ErrEmptyKey|params|6|parameter key is empty|
+|ErrEmptyValue|params|7|parameter value is empty|
+
+## Slashing
+
+|Error Name|Codespace|Code|Description|
+|:-|:-|:-|:-|
+|ErrNoValidatorForAddress|slashing|2|address is not associated with any known validator|
+|ErrBadValidatorAddr|slashing|3|validator does not exist for that address|
+|ErrValidatorJailed|slashing|4|validator still jailed; cannot be unjailed|
+|ErrValidatorNotJailed|slashing|5|validator not jailed; cannot be unjailed|
+|ErrMissingSelfDelegation|slashing|6|validator has no self-delegation; cannot be unjailed|
+|ErrSelfDelegationTooLowToUnjail|slashing|7|validator's self delegation less than minimum; cannot be unjailed|
+|ErrNoSigningInfoFound|slashing|8|no validator signing info found|
+
 ## Staking
 
 |Error Name|Codespace|Code|Description|
@@ -201,41 +223,33 @@ Category
 |ErrInvalidHistoricalInfo|staking|37|invalid historical info|
 |ErrNoHistoricalInfo|staking|38|no historical info found|
 |ErrEmptyValidatorPubKey|staking|39|empty validator public key|
-## Params
+
+## Token
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrUnknownSubspace|params|2|unknown subspace|
-|ErrSettingParameter|params|3|failed to set parameter|
-|ErrEmptyChanges|params|4|submitted parameter changes are empty|
-|ErrEmptySubspace|params|5|parameter subspace is empty|
-|ErrEmptyKey|params|6|parameter key is empty|
-|ErrEmptyValue|params|7|parameter value is empty|
-## Authz
-
-|Error Name|Codespace|Code|Description|
-|:-|:-|:-|:-|
-|ErrInvalidExpirationTime|authz|3|expiration time of authorization should be more than current time|
-## Slashing
-
-|Error Name|Codespace|Code|Description|
-|:-|:-|:-|:-|
-|ErrNoValidatorForAddress|slashing|2|address is not associated with any known validator|
-|ErrBadValidatorAddr|slashing|3|validator does not exist for that address|
-|ErrValidatorJailed|slashing|4|validator still jailed; cannot be unjailed|
-|ErrValidatorNotJailed|slashing|5|validator not jailed; cannot be unjailed|
-|ErrMissingSelfDelegation|slashing|6|validator has no self-delegation; cannot be unjailed|
-|ErrSelfDelegationTooLowToUnjail|slashing|7|validator's self delegation less than minimum; cannot be unjailed|
-|ErrNoSigningInfoFound|slashing|8|no validator signing info found|
-## Gov
-
-|Error Name|Codespace|Code|Description|
-|:-|:-|:-|:-|
-|ErrUnknownProposal|gov|2|unknown proposal|
-|ErrInactiveProposal|gov|3|inactive proposal|
-|ErrAlreadyActiveProposal|gov|4|proposal already active|
-|ErrInvalidProposalContent|gov|5|invalid proposal content|
-|ErrInvalidProposalType|gov|6|invalid proposal type|
-|ErrInvalidVote|gov|7|invalid vote option|
-|ErrInvalidGenesis|gov|8|invalid genesis state|
-|ErrNoProposalHandlerExists|gov|9|no handler exists for proposal type|
+|ErrInvalidContractID|contract|2|invalid contractID|
+|ErrContractNotExist|contract|3|contract does not exist|
+|ErrTokenNotExist|token|2|token does not exist|
+|ErrTokenNotMintable|token|3|token is not mintable|
+|ErrInvalidTokenName|token|4|token name should not be empty|
+|ErrInvalidTokenDecimals|token|5|token decimals should be within the range in 0 ~ 18|
+|ErrInvalidAmount|token|6|invalid token amount|
+|ErrInvalidImageURILength|token|7|invalid token uri length|
+|ErrInvalidNameLength|token|8|invalid name length|
+|ErrInvalidTokenSymbol|token|9|invalid token symbol|
+|ErrTokenNoPermission|token|10|account does not have the permission|
+|ErrAccountExist|token|11|account already exists|
+|ErrAccountNotExist|token|12|account does not exists|
+|ErrInsufficientBalance|token|13|insufficient balance|
+|ErrSupplyExist|token|14|supply for token already exists|
+|ErrInsufficientSupply|token|15|insufficient supply|
+|ErrInvalidChangesFieldCount|token|16|invalid count of field changes|
+|ErrEmptyChanges|token|17|changes is empty|
+|ErrInvalidChangesField|token|18|invalid field of changes|
+|ErrDuplicateChangesField|token|19|invalid field of changes|
+|ErrInvalidMetaLength|token|20|invalid meta length|
+|ErrSupplyOverflow|token|21|supply for token reached maximum|
+|ErrApproverProxySame|token|22|approver is same with proxy|
+|ErrTokenNotApproved|token|23|proxy is not approved on the token|
+|ErrTokenAlreadyApproved|token|24|proxy is already approved on the token|

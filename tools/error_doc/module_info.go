@@ -1,4 +1,4 @@
-//go:build error_doc_generator
+//go:build error_doc
 
 package main
 
