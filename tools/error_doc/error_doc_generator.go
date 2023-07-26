@@ -1,5 +1,3 @@
-//go:build error_doc
-
 package main
 
 import (
