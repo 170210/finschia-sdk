@@ -66,7 +66,7 @@ func main() {
 	file, err := os.Create(filePath)
 	if err == nil {
 		fmt.Println("Error:", err)
-		return
+		os.Exit(1)
 	}
 	defer file.Close()
 
