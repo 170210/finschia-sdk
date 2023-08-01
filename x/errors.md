@@ -1,5 +1,5 @@
 <!-- TOC -->
-Category
+# Category
   * [Authz](#authz)
   * [Bank](#bank)
   * [Capability](#capability)
@@ -22,6 +22,9 @@ Category
 |:-|:-|:-|:-|
 |ErrInvalidExpirationTime|authz|3|expiration time of authorization should be more than current time|
 
+>You can also find detailed information in the following Errors.go files:
+  * [authz/errors.go](authz/errors.go)
+
 ## Bank
 
 |Error Name|Codespace|Code|Description|
@@ -32,6 +35,9 @@ Category
 |ErrSendDisabled|bank|5|send transactions are disabled|
 |ErrDenomMetadataNotFound|bank|6|client denom metadata not found|
 |ErrInvalidKey|bank|7|invalid key|
+
+>You can also find detailed information in the following Errors.go files:
+  * [bank/types/errors.go](bank/types/errors.go)
 
 ## Capability
 
@@ -44,6 +50,9 @@ Category
 |ErrCapabilityNotOwned|capability|6|capability not owned by module|
 |ErrCapabilityNotFound|capability|7|capability not found|
 |ErrCapabilityOwnersNotFound|capability|8|owners not found for capability|
+
+>You can also find detailed information in the following Errors.go files:
+  * [capability/types/errors.go](capability/types/errors.go)
 
 ## Collection
 
@@ -96,12 +105,18 @@ Category
 |ErrCompositionTooWide|collection|46|cannot attach token (composition too wide)|
 |ErrBurnNonRootNFT|collection|47|cannot burn non-root NFTs|
 
+>You can also find detailed information in the following Errors.go files:
+  * [collection/errors.go](collection/errors.go)
+
 ## Crisis
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
 |ErrNoSender|crisis|2|sender address is empty|
 |ErrUnknownInvariant|crisis|3|unknown invariant|
+
+>You can also find detailed information in the following Errors.go files:
+  * [crisis/types/errors.go](crisis/types/errors.go)
 
 ## Distribution
 
@@ -120,6 +135,9 @@ Category
 |ErrNoValidatorExists|distribution|12|validator does not exist|
 |ErrNoDelegationExists|distribution|13|delegation does not exist|
 
+>You can also find detailed information in the following Errors.go files:
+  * [distribution/types/errors.go](distribution/types/errors.go)
+
 ## Evidence
 
 |Error Name|Codespace|Code|Description|
@@ -128,6 +146,9 @@ Category
 |ErrInvalidEvidence|evidence|3|invalid evidence|
 |ErrNoEvidenceExists|evidence|4|evidence does not exist|
 |ErrEvidenceExists|evidence|5|evidence already exists|
+
+>You can also find detailed information in the following Errors.go files:
+  * [evidence/types/errors.go](evidence/types/errors.go)
 
 ## Feegrant
 
@@ -140,10 +161,16 @@ Category
 |ErrNoMessages|feegrant|6|allowed messages are empty|
 |ErrMessageNotAllowed|feegrant|7|message not allowed|
 
+>You can also find detailed information in the following Errors.go files:
+  * [feegrant/errors.go](feegrant/errors.go)
+
 ## Foundation
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
+
+>You can also find detailed information in the following Errors.go files:
+  * [foundation/errors.go](foundation/errors.go)
 
 ## Gov
 
@@ -158,6 +185,9 @@ Category
 |ErrInvalidGenesis|gov|8|invalid genesis state|
 |ErrNoProposalHandlerExists|gov|9|no handler exists for proposal type|
 
+>You can also find detailed information in the following Errors.go files:
+  * [gov/types/errors.go](gov/types/errors.go)
+
 ## Params
 
 |Error Name|Codespace|Code|Description|
@@ -168,6 +198,9 @@ Category
 |ErrEmptySubspace|params|5|parameter subspace is empty|
 |ErrEmptyKey|params|6|parameter key is empty|
 |ErrEmptyValue|params|7|parameter value is empty|
+
+>You can also find detailed information in the following Errors.go files:
+  * [params/types/proposal/errors.go](params/types/proposal/errors.go)
 
 ## Slashing
 
@@ -180,6 +213,9 @@ Category
 |ErrMissingSelfDelegation|slashing|6|validator has no self-delegation; cannot be unjailed|
 |ErrSelfDelegationTooLowToUnjail|slashing|7|validator's self delegation less than minimum; cannot be unjailed|
 |ErrNoSigningInfoFound|slashing|8|no validator signing info found|
+
+>You can also find detailed information in the following Errors.go files:
+  * [slashing/types/errors.go](slashing/types/errors.go)
 
 ## Staking
 
@@ -224,6 +260,9 @@ Category
 |ErrNoHistoricalInfo|staking|38|no historical info found|
 |ErrEmptyValidatorPubKey|staking|39|empty validator public key|
 
+>You can also find detailed information in the following Errors.go files:
+  * [staking/types/errors.go](staking/types/errors.go)
+
 ## Token
 
 |Error Name|Codespace|Code|Description|
@@ -253,3 +292,7 @@ Category
 |ErrApproverProxySame|token|22|approver is same with proxy|
 |ErrTokenNotApproved|token|23|proxy is not approved on the token|
 |ErrTokenAlreadyApproved|token|24|proxy is already approved on the token|
+
+>You can also find detailed information in the following Errors.go files:
+  * [token/class/errors.go](token/class/errors.go)
+  * [token/errors.go](token/errors.go)
