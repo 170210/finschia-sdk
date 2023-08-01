@@ -25,7 +25,8 @@ jobs:
 
       - name: Check generated swagger docs
         run: |
-          go run ./tools/error_doc
+          cd ./tools/error_doc
+          go run ./
           if ! git diff --stat --exit-code ; then
             echo ">> ERROR:"
             echo ">>"
