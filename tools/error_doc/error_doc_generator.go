@@ -54,7 +54,8 @@ func main() {
 		}
 		moduleWithPaths[moduleName] = append(moduleWithPaths[moduleName], filePath)
 	}
-
+	fmt.Printf("Failed to get module name for %s\n", filePath)
+	os.Exit(1)
 	// sort keys and filepaths
 	var modules []string
 	for moduleName := range moduleWithPaths {
