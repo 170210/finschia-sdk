@@ -54,7 +54,6 @@ func main() {
 		}
 		moduleWithPaths[moduleName] = append(moduleWithPaths[moduleName], filePath)
 	}
-	os.Exit(1)
 	// sort keys and filepaths
 	var modules []string
 	for moduleName := range moduleWithPaths {
@@ -65,7 +64,7 @@ func main() {
 
 	filePath := targetPath + "/errors.md"
 	file, err := os.Create(filePath)
-	if err != nil {
+	if err == nil {
 		fmt.Println("Error:", err)
 		return
 	}
