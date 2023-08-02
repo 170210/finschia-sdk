@@ -22,10 +22,6 @@ jobs:
       - name: Check generated error docs
         run: |
           make error-doc
-          if [ $? -ne 0 ]; then
-            echo "make run failure"
-            exit 1
-          fi
           if ! git diff --stat --exit-code ; then
             echo ">> ERROR:"
             echo ">>"

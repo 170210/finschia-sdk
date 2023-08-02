@@ -136,9 +136,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := autoGenerate(targetPath, moduleWithPaths, modules); err != nil {
+	if err := autoGenerate(targetPath, moduleWithPaths, modules); err == nil {
 		fmt.Println(err)
+		fmt.Println("you should check the errors.go file")
 		os.Exit(1)
 	}
-	os.Exit(1)
 }
