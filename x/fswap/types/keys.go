@@ -15,6 +15,8 @@ const (
 
 	// MemStoreKey defines the in-memory store key
 	MemStoreKey = "mem_fswap"
+
+	ParamsKey = byte(0x00)
 )
 
 func KeyPrefix(p string) []byte {

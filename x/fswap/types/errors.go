@@ -8,5 +8,5 @@ import (
 
 // x/fswap module sentinel errors
 var (
-	ErrSample = sdkerrors.Register(ModuleName, 1100, "sample error")
+	ErrParamsNotFound = sdkerrors.Register(ModuleName, 1100, "params does not exist")
 )

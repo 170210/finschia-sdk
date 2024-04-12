@@ -8,6 +8,12 @@ import (
 
 var _ paramtypes.ParamSet = (*Params)(nil)
 
+const (
+	DefaultSwapRate         uint64 = 148079656
+	DefaultSwapRateDecimals int32  = 6
+	DefaultNewCoinDenom     string = "PDT"
+)
+
 // ParamKeyTable the param key table for launch module
 func ParamKeyTable() paramtypes.KeyTable {
 	return paramtypes.NewKeyTable().RegisterParamSet(&Params{})
