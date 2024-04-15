@@ -17,6 +17,8 @@ type (
 		storeKey   sdk.StoreKey
 		memKey     sdk.StoreKey
 		paramstore paramtypes.Subspace
+
+		bankKeeper types.BankKeeper
 	}
 )
 
