@@ -177,7 +177,7 @@
 
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
-|ErrSample|fswap|1100|sample error|
+|ErrParamsNotFound|fswap|1100|params does not exist|
 
 >You can also find detailed information in the following Errors.go files:
   * [fswap/types/errors.go](fswap/types/errors.go)
