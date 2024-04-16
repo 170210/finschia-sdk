@@ -9,9 +9,7 @@ const (
 	DefaultOldCoins string = "cony"
 )
 
-var (
-	DefaultSwapRate = sdk.NewDecWithPrec(148079656, 6)
-)
+var DefaultSwapRate = sdk.NewDecWithPrec(148079656, 6)
 
 // InitGenesis initializes the capability module's state from a provided genesis
 // state.

@@ -178,6 +178,7 @@
 |Error Name|Codespace|Code|Description|
 |:-|:-|:-|:-|
 |ErrParamsNotFound|fswap|1100|params does not exist|
+|ErrSwappedNotFound|fswap|1101|swapped does not exist|
 
 >You can also find detailed information in the following Errors.go files:
   * [fswap/types/errors.go](fswap/types/errors.go)

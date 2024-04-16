@@ -10,9 +10,9 @@ func (k Keeper) GetSwapped(ctx sdk.Context) types.Swapped {
 	store := ctx.KVStore(k.storeKey)
 	bz := store.Get([]byte{types.SwappedKey})
 	var swapped types.Swapped
-	//todo
+
 	if bz == nil {
-		panic(types.ErrParamsNotFound)
+		panic(types.ErrSwappedNotFound)
 	}
 	k.cdc.MustUnmarshal(bz, &swapped)
 	return swapped
@@ -34,7 +34,7 @@ func (k Keeper) GetTotalSupply(ctx sdk.Context) sdk.DecCoin {
 	bz := store.Get([]byte{types.TotalSupplyKey})
 	var totalSupply sdk.DecCoin
 	if bz == nil {
-		//todo
+
 		panic(types.ErrParamsNotFound)
 	}
 	k.cdc.MustUnmarshal(bz, &totalSupply)

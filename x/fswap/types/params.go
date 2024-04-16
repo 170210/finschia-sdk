@@ -15,9 +15,7 @@ const (
 	DefaultNewCoinDenom string = "PDT"
 )
 
-var (
-	ParamStoreKeyNewDenom = []byte("NewDenom")
-)
+var ParamStoreKeyNewDenom = []byte("NewDenom")
 
 // ParamKeyTable the param key table for launch module
 func ParamKeyTable() paramtypes.KeyTable {
