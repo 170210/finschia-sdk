@@ -33,6 +33,23 @@ func (k Keeper) MakeSwap(ctx sdk.Context, swap types.Swap, toDenomMetadata bank.
 		return types.ErrCanNotHaveMoreSwap.Wrapf("cannot make more swaps, max swaps is %d", k.config.MaxSwaps)
 	}
 
+	if swap.ToDenom != toDenomMetadata.Base {
+		return errors.ErrInvalidRequest.Wrap("toDenom should be existed in metadata")
+	}
+
+	if !k.HasSupply(ctx, swap.FromDenom) {
+		return errors.ErrInvalidRequest.Wrap("fromDenom should be existed in chain")
+	}
+
+	existingMetadata, ok := k.GetDenomMetaData(ctx, swap.ToDenom)
+	if !ok {
+		k.SetDenomMetaData(ctx, toDenomMetadata)
+		return nil
+	}
+	if !denomMetadataEqual(existingMetadata, toDenomMetadata) {
+		return errors.ErrInvalidRequest.Wrap("changing existing metadata not allowed")
+	}
+
 	if isNewSwap {
 		swapped := types.Swapped{
 			FromCoinAmount: sdk.Coin{
@@ -51,15 +68,6 @@ func (k Keeper) MakeSwap(ctx sdk.Context, swap types.Swap, toDenomMetadata bank.
 
 	if err := k.setSwap(ctx, swap); err != nil {
 		return err
-	}
-
-	existingMetadata, ok := k.GetDenomMetaData(ctx, swap.ToDenom)
-	if !ok {
-		k.SetDenomMetaData(ctx, toDenomMetadata)
-		return nil
-	}
-	if !denomMetadataEqual(existingMetadata, toDenomMetadata) {
-		return errors.ErrInvalidRequest.Wrap("changing existing metadata not allowed")
 	}
 
 	return nil

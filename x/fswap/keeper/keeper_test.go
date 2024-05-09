@@ -82,8 +82,8 @@ func (s *KeeperTestSuite) SetupTest() {
 		DenomUnits: []*bank.DenomUnit{
 			{Denom: s.swap.ToDenom, Exponent: 0},
 		},
-		Base:    "dummy",
-		Display: "dummycoin",
+		Base:    "todenom",
+		Display: "todenomcoin",
 		Name:    "DUMMY",
 		Symbol:  "DUM",
 	}
